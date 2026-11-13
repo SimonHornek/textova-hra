@@ -268,6 +268,3 @@ def protest():
 
 #Spuštění hry
 Motel(Wanted_level, zivoty, inventar)
-
-#Spuštění hry
-Motel(Wanted_level, zivoty, inventar)
