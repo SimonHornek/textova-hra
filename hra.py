@@ -79,7 +79,7 @@ def Motel(Wanted_level, zivoty, inventar):
                 return
     elif volba == 3:
         print("Běžíš po schodech, zabočíš ke dveřím a najednou naproti tobě jde 10 agentů státní bezpečnosti, hned tě zatknou a odvezou na stanici")
-        Wanted_level_SB = Wanted_level_SB - 1
+        Wanted_level = Wanted_level - 1
         stanice(Wanted_level, zivoty, inventar)
         return
 
@@ -270,4 +270,4 @@ def protest():
 Motel(Wanted_level, zivoty, inventar)
 
 #Spuštění hry
-Motel(Wanted_level_SB, zivoty, inventar)
+Motel(Wanted_level, zivoty, inventar)
