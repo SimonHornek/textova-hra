@@ -77,10 +77,10 @@ def Motel(Wanted_level_SB, zivoty, inventar):
                 print(f"Ztratil jsi jeden život. Teď máš {zivoty} životy")
                 stanice(Wanted_level_SB, zivoty, inventar)
                 return
-        elif volba == 3:
-            print("Běžíš po schodech, zabočíš ke dveřím a najednou naproti tobě jde 10 agentů státní bezpečnosti, hned tě zatknou a odvezou na stanici")
-            Wanted_level_SB = Wanted_level_SB - 1
-            stanice(Wanted_level_SB, zivoty, inventar)
+    elif volba == 3:
+        print("Běžíš po schodech, zabočíš ke dveřím a najednou naproti tobě jde 10 agentů státní bezpečnosti, hned tě zatknou a odvezou na stanici")
+        Wanted_level_SB = Wanted_level_SB - 1
+        stanice(Wanted_level_SB, zivoty, inventar)
 
 #Definice části hry na střechách
 def strechy(Wanted_level_SB, zivoty, inventar):
