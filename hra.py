@@ -99,7 +99,7 @@ def strechy(Wanted_level_SB, zivoty, inventar):
             print("Došli ti životy, zemřel jsi.")
             return
         print("Uklouzl jsi, ztratil jsi život, něco ti vypadlo z kapsy, ale chytil jses")
-        inventar.pop(random.randint(0, len(inventar)))
+        inventar.pop(random.randint(0, len(inventar) - 1))
     print("Pokračuješ dál, v tu ti uklouzla noha")
     terminal = random.randint(70000, 50000000)
     print(terminal)
@@ -112,7 +112,7 @@ def strechy(Wanted_level_SB, zivoty, inventar):
             print("Došli ti životy, zemřel jsi.")
             return
         print("Uklouzl jsi, ztratil jsi život, něco ti vypadlo z kapsy, ale ještě máš energii a chytil jses. Pokračuješ dál.")
-        inventar.pop(random.randint(0, len(inventar)))
+        inventar.pop(random.randint(0, len(inventar) - 1))
     print("Už jsi skoro u konce. Ze nadšení že jsi skoro tam jsi uklouznul.")
     terminal = random.randint(100000000000, 900000000000000000)
     print(terminal)
@@ -125,7 +125,7 @@ def strechy(Wanted_level_SB, zivoty, inventar):
             print("Došli ti životy, zemřel jsi.")
             return
         print("Nechytil jsi se, něco ti vypadlo z kapsy, ale s energií co ti zbyla jsi naštěstí spadl na okap jenom o patro níž. Ztratil jsi ale život")
-        inventar.pop(random.randint(0, len(inventar)))
+        inventar.pop(random.randint(0, len(inventar) - 1))
     print("Dolezl jsi na druhou stranu.")
     print("Jdeš dál a slezeš po žebříku až do kavárny tvojí blízké kamarádky")
     kavarna(Wanted_level_SB, zivoty, inventar)
