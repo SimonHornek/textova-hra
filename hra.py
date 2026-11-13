@@ -2,7 +2,7 @@
 import random
 volba = ""
 inventar = ["klíče", "zapalovač", "krabička s léky"]
-Wanted_level_SB = 5
+Wanted_level = 5
 #zivoty 0-2
 zivoty = 2
 
@@ -24,12 +24,12 @@ def vyber_volby(text, moznosti):
             print("Zadej číslo.")
 
 #Definice části hry v motelu
-def Motel(Wanted_level_SB, zivoty, inventar):
+def Motel(Wanted_level, zivoty, inventar):
     print("Je devátá večer, ty naopak od obvykle, kdy si povídáš se ostatními v motelu, sedíš ve svém pokoji. Zrovna děláš na svém dalším dílu které kritizuje současnou vládu")
     print('V tu skrze okno slyšíš bušení na dveře do lobby. "Státní Bezpečnost otevřete!!!" Slyšíš jak postupně postupují směrem k tvému pokoji. Co uděláš?')
     volba = vyber_volby("Zadej 1 jestli se rozhodneš: Utéct oknem. Zadej 2 jestli se rozhodneš: Schovat se ve skříni a situaci přečkat. Zadej 3 jestli se rozhodneš: Utéct hlavními dveřmi", [1, 2, 3])
     if volba == 1:
-        strechy(Wanted_level_SB, zivoty, inventar)
+        strechy(Wanted_level, zivoty, inventar)
         return
     elif volba == 2:
         print("Rychle jsi vlezl do skříně, ve skříni čekáš několik minut a nic. Do bytu ti vejde několik členů Státní Bezpečnosti, ze zdola slyšíš křik tvých přátel")
@@ -48,42 +48,91 @@ def Motel(Wanted_level_SB, zivoty, inventar):
                 cislo_y = random.randint(10,15)
                 if int(input(f"Kolik je {cislo_x} * {cislo_y}")) == cislo_x * cislo_y:
                     print("Porazil jsi agenty Státní Bezpečnosti, co uděláš teď?")
-                    Wanted_level_SB = Wanted_level_SB + 1
+                    Wanted_level = Wanted_level + 1
                     volba = vyber_volby("Zadej 1 pokud utečeš oknem. Zadej 2 pokud se pokusíš zachránit lidi zezdola", [1, 2])
                     if volba == 1:
                         print("Rychle běžíš k oknu a vylezeš ním ven")
-                        strechy(Wanted_level_SB, zivoty, inventar)
+                        strechy(Wanted_level, zivoty, inventar)
                         return
                     if volba == 2:
                         print("Vyjdeš dveřmi směrem do dolního patra, v tu narazíš na plnou chodbu agentů Státní Bezpečnosti které přivolal hluk z boje.")
                         print("Státní Bezpečnost tě zatkla a převáží do jejich stanice.")
-                        stanice(Wanted_level_SB, zivoty, inventar)
+                        stanice(Wanted_level, zivoty, inventar)
                         return
                 else:
                     print("Agenti státní bezpečnosti tě porazili a zatkli. Ztratil jsi jeden život")
                     zivoty = zivoty - 1
                     print(f"Máš {zivoty} životy")
-                    Wanted_level_SB = Wanted_level_SB + 1
+                    Wanted_level = Wanted_level + 1
                     if zivoty <= 0:
                         print("Zemřel jsi")
                         return
                     else:
                         print("Teď tě vezou na stanici.")
-                        stanice(Wanted_level_SB, zivoty, inventar)
+                        stanice(Wanted_level, zivoty, inventar)
                         return
             elif volba == 2:
                 print("Státní Bezpečnost tě nenechala mluvit, dala ti pěstí a zatkla tě. Teď tě odváží na stanici.")
                 zivoty = zivoty - 1
                 print(f"Ztratil jsi jeden život. Teď máš {zivoty} životy")
-                stanice(Wanted_level_SB, zivoty, inventar)
+                stanice(Wanted_level, zivoty, inventar)
                 return
     elif volba == 3:
         print("Běžíš po schodech, zabočíš ke dveřím a najednou naproti tobě jde 10 agentů státní bezpečnosti, hned tě zatknou a odvezou na stanici")
         Wanted_level_SB = Wanted_level_SB - 1
-        stanice(Wanted_level_SB, zivoty, inventar)
+        stanice(Wanted_level, zivoty, inventar)
+        return
+
+#Definice části hry která nastává v motelu po volbě 2 v motelu
+def skrin(zivoty, Waned_Level):
+    print("Rychle jsi vlezl do skříně, ve skříni čekáš několik minut a nic. Do bytu ti vejde několik členů Státní Bezpečnosti, ze zdola slyšíš křik tvých přátel")
+    volba = vyber_volby("Zadej 1 pokud se budeš dál ve skříni schovávat. Zadej 2 pokud ze skříně vyjdeš", [1, 2])
+    if volba == 1:
+        print("Držíš se dál ve skříní, přes malou škvíru pozoruješ jak členi státní bezpečnosti procházejí pokoj, už se blíží ke skříni.")
+        print("V tu jim něco zazní do vysílačky a odejdou, ty chvíli ještě počkáš ve skříni a cítíš jak se zvyšuje teplo, opět se koukneš přes škvíru ve skříni a vidíš")
+        print("jak celý pokoj hoří. Celou budovu podpálila Státní Bezpečnost. Zemřel jsi")
+    elif volba == 2:
+        print("Rozhodneš se vyjít ze skříně. Jak s Státní Bezpečnosti naložíš?")
+        volba = vyber_volby("Zadej 1 pokud s němi rozhodneš bojovat. Zadej 2 pokud se pokusíš s němi komunikovat", [1, 2])
+    if volba == 1:
+        print("Rychle ze skříně vylezeš a na Státní Bezpečnost zaútočíš")
+        print("Na to aby jsi vyhrál souboj, vypočítej příklad")
+        cislo_x = random.randint(1, 10)
+        cislo_y = random.randint(10,15)
+        if int(input(f"Kolik je {cislo_x} * {cislo_y}")) == cislo_x * cislo_y:
+            print("Porazil jsi agenty Státní Bezpečnosti, co uděláš teď?")
+            Wanted_level = Wanted_level + 1
+            volba = vyber_volby("Zadej 1 pokud utečeš oknem. Zadej 2 pokud se pokusíš zachránit lidi zezdola", [1, 2])
+            if volba == 1:
+                print("Rychle běžíš k oknu a vylezeš ním ven")
+                strechy(Wanted_level, zivoty, inventar)
+                return
+            if volba == 2:
+                print("Vyjdeš dveřmi směrem do dolního patra, v tu narazíš na plnou chodbu agentů Státní Bezpečnosti které přivolal hluk z boje.")
+                print("Státní Bezpečnost tě zatkla a převáží do jejich stanice.")
+                stanice(Wanted_level, zivoty, inventar)
+                return
+        else:
+            print("Agenti státní bezpečnosti tě porazili a zatkli. Ztratil jsi jeden život")
+            zivoty = zivoty - 1
+            print(f"Máš {zivoty} životy")
+            Wanted_level = Wanted_level + 1
+            if zivoty <= 0:
+                print("Zemřel jsi")
+                return
+            else:
+                print("Teď tě vezou na stanici.")
+                stanice(Wanted_level, zivoty, inventar)
+                return
+    elif volba == 2:
+        print("Státní Bezpečnost tě nenechala mluvit, dala ti pěstí a zatkla tě. Teď tě odváží na stanici.")
+        zivoty = zivoty - 1
+        print(f"Ztratil jsi jeden život. Teď máš {zivoty} životy")
+        stanice(Wanted_level, zivoty, inventar)
+        return
 
 #Definice části hry na střechách
-def strechy(Wanted_level_SB, zivoty, inventar):
+def strechy(Wanted_level, zivoty, inventar):
     print("Oknem jsi se chytl okapu a vylezl nahoru na Střechy. Běžíš po nich dál až k velké mezeře mezi další ulicí. Tuto cestu ti plánoval kamarád a dal ti tam dlouhý kus prkna.")
     print("Na to aby jsi přešel ale potřebuješ hodně rovnováhy. Jiná cesta není tak se odhodláš a uděláš první krok")
     print("Aby jsi balancoval tak musíš opisovat vypsaná čísla.")
@@ -128,10 +177,10 @@ def strechy(Wanted_level_SB, zivoty, inventar):
         inventar.pop(random.randint(0, len(inventar) - 1))
     print("Dolezl jsi na druhou stranu.")
     print("Jdeš dál a slezeš po žebříku až do kavárny tvojí blízké kamarádky")
-    kavarna(Wanted_level_SB, zivoty, inventar)
+    kavarna(Wanted_level, zivoty, inventar)
 
 #Definice části hry v kavárně
-def kavarna(Wanted_level_SB, zivoty, inventar):
+def kavarna(Wanted_level, zivoty, inventar):
     print("Přišel jsi do kavárny kde jsi situaci vysvětlil své kamarádce. Ta tě ukryla do sklepa a předložila ti tvoje další možnosti.")
     print("'Buďto utečeš ze země, nebo se budeš muset dál ukrývat'")
     volba = vyber_volby("Zadej 1 pokud se rozhodneš utéct ze země, ale ztratíš možnost publikovat publiku tvé země. Zadej 2 pokud se budeš dál ukrývat, a bojovat za svobodu", [1, 2])
@@ -169,17 +218,17 @@ def kavarna(Wanted_level_SB, zivoty, inventar):
             return
 
 #Definice části hry v budově státní bezpečnosti
-def stanice(Wanted_level_SB, zivoty, inventar):
+def stanice(Wanted_level, zivoty, inventar):
     print("Státní bezpečnost tě odvezla do stanice. Budeš během výslechu spolupracovat?")
     volba = vyber_volby("Zadej 1 pokud spolupracovat budeš. 2 pokud ne.", [1, 2])
     if volba == 1:
-        if Wanted_level_SB <= 5:
+        if Wanted_level <= 5:
             print("Státní bezpečnost tě vyslechne. Ty spolupracuješ s tím že doufáš v to že tě pustí. Místo toho tě nadoživotí zavřou do vězení a jediné co ti přichází jsou zprávy o tom jak tvojí přátelé umírají.")
-        elif Wanted_level_SB > 5:
+        elif Wanted_level > 5:
             print("Státní bezpečnost tě vyshlechne. Ty spolupracuješ s tím že doufáš v to že tě pustí. Místo toho tě zavřou do vězení a za týden tě čeká veřejná poprava.")
             print("Den veřejné popravy přijde. Ty doufáš že tomu něco zabrání ale Státní Bezpečnost zveřejnila záznam z tvého výslechu. Všichni tvoji podpůrci jsou zklamáni a nikdo tě nepřijde zachránit.")
     elif volba == 2:
-        if Wanted_level_SB <= 5:
+        if Wanted_level <= 5:
             print("Statní Bezpečnost tě po neúspěšném výslechu odvede do cely. Za týden tě čeká veřejná poprava.")
             print("Když ale den veřejné popravy přijde tak se shromáždí davy lidí na tvojí podporu a bojují za tebe")
             print("Nějaký z protestujících tě vysvobodí a ukryje. Schováš se dál nebo pujdeš podpořit protest?")
@@ -191,7 +240,7 @@ def stanice(Wanted_level_SB, zivoty, inventar):
             elif volba == 2:
                 protest()
                 return
-        elif Wanted_level_SB > 5:
+        elif Wanted_level > 5:
             print("Státní Bezpečnost tě na místě zmlátí. Ztratíš život.")
             if zivoty <= 0:
                 print("Zemřel jsi")
@@ -216,6 +265,9 @@ def protest():
     print("Spolu s protestujícími začnete revoluci. Ten stejný den obsadíte hlavní budovu Státní Bezpečnosti, a po dvou letech neustálých bojů vyhrajete.")
     print("Konec hry")
     return
+
+#Spuštění hry
+Motel(Wanted_level, zivoty, inventar)
 
 #Spuštění hry
 Motel(Wanted_level_SB, zivoty, inventar)
